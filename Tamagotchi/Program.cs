@@ -8,10 +8,9 @@ namespace Tamagotchi
        
         static async Task Main(string[] args)
         {
-            GetPokemonApi api = new();
-            var pokemon = api.GetPokemon("pikachu").Result;
-            Console.WriteLine(pokemon);
 
+
+            new App();
         }
         
 
