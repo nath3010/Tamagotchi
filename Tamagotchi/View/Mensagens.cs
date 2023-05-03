@@ -6,38 +6,40 @@ using System.Threading.Tasks;
 using Tamagotchi.Services;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace Tamagotchi
+namespace Tamagotchi.View
 {
-    public class App
-    {
+    public class Mensagens
+	{
 
-        public App()
-        {
-            MainMenu();
-            
-        }
-        private void MainMenu()
+        public void BoasVindas()
         {
             Console.WriteLine("╔════╗╔═══╗╔═╗╔═╗╔═══╗╔═══╗╔═══╗╔═══╗╔╗─╔╗╔══╗\r\n║╔╗╔╗║║╔═╗║║║╚╝║║║╔═╗║║╔═╗║║╔═╗║║╔═╗║║║─║║╚╣─╝\r\n╚╝║║╚╝║║─║║║╔╗╔╗║║║─║║║║─╚╝║║─║║║║─╚╝║╚═╝║─║║─\r\n──║║──║╚═╝║║║║║║║║╚═╝║║║╔═╗║║─║║║║─╔╗║╔═╗║─║║─\r\n──║║──║╔═╗║║║║║║║║╔═╗║║╚╩═║║╚═╝║║╚═╝║║║─║║╔╣─╗\r\n──╚╝──╚╝─╚╝╚╝╚╝╚╝╚╝─╚╝╚═══╝╚═══╝╚═══╝╚╝─╚╝╚══╝\n");
 
             Console.WriteLine("Qual é o seu nome?");
-            string nome = Console.ReadLine();
-
-            Menu(nome);
 
         }
+		public void Menu(string nomeJogador)
+		{
+			Console.WriteLine("-------------------------- MENU ---------------------------------------");
+			Console.WriteLine($"{nomeJogador} Você deseja:");
+			Console.WriteLine("1 - Adotar um Mascote Virtual");
+			Console.WriteLine("2 - Ver seus Mascotes");
+			Console.WriteLine("3 - Sair \n");
 
-        private void AdotarMascote(String nome)
+		}
+
+
+		public void MenuAdocao(string nomeJogador)
         {
             while (true)
             {
                 Console.WriteLine("-------------------------- ADOTAR MASCOTE --------------------------");
-                Console.WriteLine($"{nome} Qual mascote você deseja adotar:");
+                Console.WriteLine($"{nomeJogador} Qual mascote você deseja adotar:");
                 Console.WriteLine("PIKACHU");
                 Console.WriteLine("GENGAR");
                 Console.WriteLine(" MEW");
 
-                String mascote = Console.ReadLine();
+                string mascote = Console.ReadLine();
                 mascote = mascote.ToLower();
 
                 if (mascote != "pikachu" && mascote != "gengar" && mascote != "mew")
@@ -48,11 +50,11 @@ namespace Tamagotchi
 
                 else
                 {
-                    bool a = true;
-                    while (a)
+                    bool continuar = true;
+                    while (continuar)
                     {
                         Console.WriteLine("--------------------------------------------------------------------");
-                        Console.WriteLine($"{nome} Você deseja:");
+                        Console.WriteLine($"{nomeJogador} Você deseja:");
                         Console.WriteLine($"1 - Saber mais sobre {mascote}");
                         Console.WriteLine($"2 - Adotar {mascote}");
                         Console.WriteLine("3 - Voltar");
@@ -63,19 +65,24 @@ namespace Tamagotchi
                         {
                             case "1":
                                 Console.WriteLine("--------------------------------------------------------------------");
+                                
                                 GetPokemonApi api = new();
-                                var pokemon = api.GetPokemon(mascote).Result;
+                                var pokemon = api.GetPokemonAsync(mascote).Result;
                                 Console.WriteLine(pokemon);
+                                
                                 break;
+
                             case "2":
-                                Console.WriteLine($"Parabéns {nome}, Mascote adotado!! O ovo está chocando:");
+                                Console.WriteLine($"Parabéns {nomeJogador}, Mascote adotado!! O ovo está chocando:");
                                 Console.WriteLine("                                                                          \r\n                                                                          \r\n                                                                          \r\n                                ████████                                  \r\n                              ██        ██                                \r\n                            ██▒▒▒▒        ██                              \r\n                          ██▒▒▒▒▒▒      ▒▒▒▒██                            \r\n                          ██▒▒▒▒▒▒      ▒▒▒▒██                            \r\n                        ██  ▒▒▒▒        ▒▒▒▒▒▒██                          \r\n                        ██                ▒▒▒▒██                          \r\n                      ██▒▒      ▒▒▒▒▒▒          ██                        \r\n                      ██      ▒▒▒▒▒▒▒▒▒▒        ██                        \r\n                      ██      ▒▒▒▒▒▒▒▒▒▒    ▒▒▒▒██                        \r\n                      ██▒▒▒▒  ▒▒▒▒▒▒▒▒▒▒  ▒▒▒▒▒▒██                        \r\n                        ██▒▒▒▒  ▒▒▒▒▒▒    ▒▒▒▒██                          \r\n                        ██▒▒▒▒            ▒▒▒▒██                          \r\n                          ██▒▒              ██                            \r\n                            ████        ████                              \r\n                                ████████                                  \r\n                                                                          \r\n                                                                          \r\n                                                                          \r\n");
-                                a = false;
+								
+                                
+                                continuar = false;
                                 break;
 
                             case "3":
-                                a = false;
-                                Menu(nome);
+								continuar = false;
+                                Menu(nomeJogador);
                                 break;
                         }
                     }
@@ -86,32 +93,6 @@ namespace Tamagotchi
 
 
         }
-
-        private void Menu(string nome)
-        {
-
-            Console.WriteLine("-------------------------- MENU ---------------------------------------");
-            Console.WriteLine($"{nome} Você deseja:");
-            Console.WriteLine("1 - Adotar um Mascote Virtual");
-            Console.WriteLine("2 - Ver seus Mascotes");
-            Console.WriteLine("3 - Sair \n");
-
-            string opcaoMenu = Console.ReadLine();
-
-            switch (opcaoMenu)
-            {
-                case "1":
-                    AdotarMascote(nome);
-                    break;
-                case "2":
-                    Console.WriteLine("2");
-                    break;
-                case "3":
-                    Console.WriteLine($"Tchau {nome}, até a proxíma!");
-                    break;
-            }
-        }
-
 
 
     }

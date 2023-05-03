@@ -1,5 +1,7 @@
 ﻿using System.Text.Json;
+using Tamagotchi.Controller;
 using Tamagotchi.Services;
+using Tamagotchi.View;
 
 namespace Tamagotchi
 {
@@ -10,8 +12,10 @@ namespace Tamagotchi
         {
 
 
-            new App();
-        }
+            var app = new AppController();
+            app.Jogar();
+
+		}
         
 
 

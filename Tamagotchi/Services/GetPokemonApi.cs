@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Tamagotchi.Model;
 
 namespace Tamagotchi.Services
 {
     public class GetPokemonApi
     {
-         public async Task<Mascote> GetPokemon(string name)
+         public async Task<Mascote> GetPokemonAsync(string name)
         {
             using(HttpClient client = new HttpClient())
             {
