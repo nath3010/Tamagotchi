@@ -1,34 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Tamagotchi.Model;
+using Tamagotchi.Services;
 using Tamagotchi.View;
 
 namespace Tamagotchi.Controller
 {
 	public class AppController
 	{
+		private Telas Tela { get; set; }
+		private List<Mascote> mascotesAdotados { get; set; }
+
+        public AppController()
+        {
+			Tela = new Telas();
+			mascotesAdotados = new List<Mascote>();
+        }
+
 		public void Jogar()
 		{
-			bool continuar = true;
-			string nomeJogador;
+			string nomeUsuario = Tela.BoasVindas();
 			string opcaoMenu;
+			bool continuar = true;
 
-			var mensagem = new Mensagens();
-
-			mensagem.BoasVindas();
-			nomeJogador = Console.ReadLine();
-
-			while (continuar)
-			{
-				mensagem.Menu(nomeJogador);
-				opcaoMenu = Console.ReadLine();
+			while (continuar) 
+			{ 
+				opcaoMenu = Tela.TelaInicial(nomeUsuario);
 
 				switch (opcaoMenu)
 				{
 					case "1":
-						mensagem.MenuAdocao(nomeJogador);
+						MenuAdocao(nomeUsuario);
 						break;
 					case "2":
 						break;
@@ -36,10 +36,56 @@ namespace Tamagotchi.Controller
 						continuar = false;
 						break;
 					default:
-						Console.WriteLine("Opção inválida!");
+						Console.WriteLine("Opção inválida!\n");
 						break;
+
+				}
+				
+
+			}
+		}
+		private void MenuAdocao(string nomeUsuario)
+		{
+			string opcaoMascote = Tela.TelaInicialAdocao(nomeUsuario);
+			opcaoMascote = opcaoMascote.ToLower();
+
+			if (opcaoMascote != "pikachu" && opcaoMascote != "gengar" && opcaoMascote != "mew")
+			{
+				Console.WriteLine("O mascote não existe!");
+			}
+			else
+			{
+				GetPokemonApi api = new();
+				var mascote = api.GetPokemonAsync(opcaoMascote).Result;
+
+				string opcaoMenuAdocao;
+				bool continuar = true;
+
+				while (continuar)
+				{
+					opcaoMenuAdocao = Tela.TelaOpcaoAdocao(mascote, nomeUsuario);
+
+
+					switch (opcaoMenuAdocao)
+					{
+						case "1":
+							Tela.TelaInfoPokemon(mascote);
+							break;
+						case "2":
+							Tela.TelaFinalAdocao(nomeUsuario);
+							mascotesAdotados.Add(mascote);
+							continuar = false;
+							break;
+						case "3":
+							continuar = false;
+							break;
+						default:
+							Console.WriteLine("Opção Invalida!\n");
+							break;
+					}
 				}
 			}
 		}
+
 	}
 }
