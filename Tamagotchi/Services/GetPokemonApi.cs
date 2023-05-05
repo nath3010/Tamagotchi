@@ -10,7 +10,7 @@ namespace Tamagotchi.Services
 {
     public class GetPokemonApi
     {
-         public async Task<Mascote> GetPokemonAsync(string name)
+         public async Task<Pokemon> GetPokemonAsync(string name)
         {
             using(HttpClient client = new HttpClient())
             {
@@ -24,7 +24,7 @@ namespace Tamagotchi.Services
                     
                     
 
-                    return JsonSerializer.Deserialize<Mascote>(responseString);
+                    return JsonSerializer.Deserialize<Pokemon>(responseString);
                 }   
 
                 else return null;

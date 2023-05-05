@@ -46,7 +46,7 @@ namespace Tamagotchi.View
 			return mascote;
 		}
 
-		public string TelaOpcaoAdocao(Mascote mascote, string nomeJogador)
+		public string TelaOpcaoAdocao(Pokemon mascote, string nomeJogador)
 		{
 			Console.WriteLine("--------------------------------------------------------------------");
 			Console.WriteLine($"{nomeJogador} Você deseja:");
@@ -58,7 +58,7 @@ namespace Tamagotchi.View
 			return opcaoAdocao;
 		}
 
-		public void TelaInfoPokemon(Mascote mascote)
+		public void TelaInfoPokemon(Pokemon mascote)
 		{
 			Console.WriteLine("--------------------------------------------------------------------");
 			Console.WriteLine(mascote);
@@ -69,6 +69,22 @@ namespace Tamagotchi.View
 		{
 			Console.WriteLine($"Parabéns {nomeJogador}, Mascote adotado!! O ovo está chocando:");
 			Console.WriteLine("                                                                          \r\n                                                                          \r\n                                                                          \r\n                                ████████                                  \r\n                              ██        ██                                \r\n                            ██▒▒▒▒        ██                              \r\n                          ██▒▒▒▒▒▒      ▒▒▒▒██                            \r\n                          ██▒▒▒▒▒▒      ▒▒▒▒██                            \r\n                        ██  ▒▒▒▒        ▒▒▒▒▒▒██                          \r\n                        ██                ▒▒▒▒██                          \r\n                      ██▒▒      ▒▒▒▒▒▒          ██                        \r\n                      ██      ▒▒▒▒▒▒▒▒▒▒        ██                        \r\n                      ██      ▒▒▒▒▒▒▒▒▒▒    ▒▒▒▒██                        \r\n                      ██▒▒▒▒  ▒▒▒▒▒▒▒▒▒▒  ▒▒▒▒▒▒██                        \r\n                        ██▒▒▒▒  ▒▒▒▒▒▒    ▒▒▒▒██                          \r\n                        ██▒▒▒▒            ▒▒▒▒██                          \r\n                          ██▒▒              ██                            \r\n                            ████        ████                              \r\n                                ████████                                  \r\n                                                                          \r\n                                                                          \r\n                                                                          \r\n");
+
+		}
+
+		public string TelaOpcaoInteracao(Mascote mascote, string nomeJogador)
+		{
+			Console.WriteLine("-------------------------- Tela ---------------------------------------");
+			Console.WriteLine($"{nomeJogador} Você deseja:");
+			Console.WriteLine($"1 - Saber mais como {mascote.name}");
+			Console.WriteLine($"2 - Alimentar o {mascote.name}");
+			Console.WriteLine($"3 - Brincar com {mascote.name}");
+			Console.WriteLine($"4 - Colocar {mascote.name} para dormir");
+			Console.WriteLine("5 - Voltar \n");
+
+			string opcaoTela = Console.ReadLine();
+
+			return opcaoTela;
 
 		}
 

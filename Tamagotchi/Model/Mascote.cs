@@ -13,5 +13,13 @@ namespace Tamagotchi.Model
 		public int Sono { get; set; }
 		public DateTime DataNascimento { get; set; }
 
-	}
+        public Mascote(Pokemon pokemon)
+        {
+            this.name = pokemon.name;
+            this.height = pokemon.height;
+            this.weight = pokemon.weight;
+            this.abilities = pokemon.abilities;
+        }
+
+    }
 }
