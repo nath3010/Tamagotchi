@@ -36,7 +36,7 @@ namespace Tamagotchi.Model
             this.abilities = pokemon.abilities;
         }
 
-        public bool Fome()
+		public bool Fome()
         {
             return Alimentacao > 5 ? true : false;
 

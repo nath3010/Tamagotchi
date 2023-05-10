@@ -31,6 +31,7 @@ namespace Tamagotchi.Controller
 						MenuAdocao(nomeUsuario);
 						break;
 					case "2":
+						MenuInteracao(mascotesAdotados, nomeUsuario);
 						break;
 					case "3":
 						continuar = false;
@@ -56,7 +57,9 @@ namespace Tamagotchi.Controller
 			else
 			{
 				GetPokemonApi api = new();
-				var mascote = api.GetPokemonAsync(opcaoMascote).Result;
+				var pokemeon = api.GetPokemonAsync(opcaoMascote).Result;
+				
+				var mascote = new Mascote(pokemeon);
 
 				string opcaoMenuAdocao;
 				bool continuar = true;
@@ -85,7 +88,63 @@ namespace Tamagotchi.Controller
 					}
 				}
 			}
+
 		}
+
+		private void MenuInteracao(List<Mascote> mascotes, string nomeUsuario)
+		{
+			string opcaoMenuInteracao;
+			int opcaoMascoteInteracao;
+			bool continuar = true;
+
+			opcaoMascoteInteracao = Tela.TelaConsultaMascote(mascotesAdotados);
+			Mascote mascote = mascotes[opcaoMascoteInteracao];
+
+			while (continuar) 
+			{
+				opcaoMenuInteracao = Tela.TelaOpcaoInteracao(mascote, nomeUsuario);
+
+				if (!mascote.Saude())
+				{
+					Tela.TelaGameOver(mascote);
+					continuar = false;
+				}
+
+				switch (opcaoMenuInteracao)
+				{
+					case "1":
+						Tela.TelaInfoMascote(mascote);
+						break;
+					case "2":
+						mascote.Alimentar();
+						Tela.TelaAlimetar(mascote);
+						break;
+					case "3":
+						mascote.Brincar();
+						Tela.TelaBrincar(mascote);
+						break;
+					case "4":
+						mascote.Dormir();
+						Tela.TelaDormir(mascote);
+						break;
+					case "5":
+						continuar = false;
+						break;
+					default:
+						Console.WriteLine("Opção Invalida!\n");
+						break;
+
+				}
+			}
+			
+			
+			
+			
+			
+			
+		}
+
+
 
 	}
 }
