@@ -26,15 +26,15 @@ namespace Tamagotchi.Model
 
 		}
 
-        public Mascote(Pokemon pokemon)
-        {
-            Initialize();
+   //     public Mascote(Pokemon pokemon)
+   //     {
+   //         Initialize();
 
-			this.name = pokemon.name;
-            this.height = pokemon.height;
-            this.weight = pokemon.weight;
-            this.abilities = pokemon.abilities;
-        }
+			//this.name = pokemon.name;
+   //         this.height = pokemon.height;
+   //         this.weight = pokemon.weight;
+   //         this.abilities = pokemon.abilities;
+   //     }
 
 		public bool Fome()
         {

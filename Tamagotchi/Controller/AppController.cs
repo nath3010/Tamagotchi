@@ -1,4 +1,5 @@
-﻿using Tamagotchi.Model;
+﻿using Tamagotchi.Helpers;
+using Tamagotchi.Model;
 using Tamagotchi.Services;
 using Tamagotchi.View;
 
@@ -58,8 +59,12 @@ namespace Tamagotchi.Controller
 			{
 				GetPokemonApi api = new();
 				var pokemeon = api.GetPokemonAsync(opcaoMascote).Result;
-				
-				var mascote = new Mascote(pokemeon);
+
+				//var mascote = new Mascote(pokemeon);
+
+				//Initializing AutoMapper
+				var mapper = MapperConfig.InitializeAutomapper();
+				var mascote = mapper.Map<Pokemon, Mascote>(pokemeon);
 
 				string opcaoMenuAdocao;
 				bool continuar = true;

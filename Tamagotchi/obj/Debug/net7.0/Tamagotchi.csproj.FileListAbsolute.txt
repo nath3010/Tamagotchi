@@ -13,3 +13,5 @@ C:\Users\natha\OneDrive\Documentos\Projetos\Tamagotchi\Tamagotchi\obj\Debug\net7
 C:\Users\natha\OneDrive\Documentos\Projetos\Tamagotchi\Tamagotchi\obj\Debug\net7.0\Tamagotchi.pdb
 C:\Users\natha\OneDrive\Documentos\Projetos\Tamagotchi\Tamagotchi\obj\Debug\net7.0\Tamagotchi.genruntimeconfig.cache
 C:\Users\natha\OneDrive\Documentos\Projetos\Tamagotchi\Tamagotchi\obj\Debug\net7.0\ref\Tamagotchi.dll
+C:\Users\natha\OneDrive\Documentos\Projetos\Tamagotchi\Tamagotchi\bin\Debug\net7.0\AutoMapper.dll
+C:\Users\natha\OneDrive\Documentos\Projetos\Tamagotchi\Tamagotchi\obj\Debug\net7.0\Tamagotchi.csproj.CopyComplete
