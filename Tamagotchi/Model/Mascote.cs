@@ -16,9 +16,9 @@ namespace Tamagotchi.Model
         private void Initialize()
         {
             Random valorAleatorio = new Random();
-            this.Alimentacao = valorAleatorio.Next(3, 10);
-            this.Humor = valorAleatorio.Next(3, 10);
-            this.Sono = valorAleatorio.Next(3, 10);
+            Alimentacao = valorAleatorio.Next(3, 10);
+            Humor = valorAleatorio.Next(3, 10);
+            Sono = valorAleatorio.Next(3, 10);
         }
         public Mascote()
         {
