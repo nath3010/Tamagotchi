@@ -100,47 +100,69 @@ namespace Tamagotchi.Controller
 		{
 			string opcaoMenuInteracao;
 			int opcaoMascoteInteracao;
+			Mascote mascote = default;
 			bool continuar = true;
 
-			opcaoMascoteInteracao = Tela.TelaConsultaMascote(mascotesAdotados);
-			Mascote mascote = mascotes[opcaoMascoteInteracao];
-
-			while (continuar) 
+			while (continuar)
 			{
-				opcaoMenuInteracao = Tela.TelaOpcaoInteracao(mascote, nomeUsuario);
+				opcaoMascoteInteracao = Tela.TelaConsultaMascote(mascotesAdotados);
 
-				if (!mascote.Saude())
+				if (mascotes.ElementAtOrDefault(opcaoMascoteInteracao) == null)
 				{
-					Tela.TelaGameOver(mascote);
-					continuar = false;
+					Console.WriteLine("--------------------------------------------------------------------");
+					Console.WriteLine("Você não possui esse pokemon!");
+					Console.WriteLine("Digite a opção correta.");
+					Console.WriteLine("--------------------------------------------------------------------");
 				}
-
-				switch (opcaoMenuInteracao)
-				{
-					case "1":
-						Tela.TelaInfoMascote(mascote);
-						break;
-					case "2":
-						mascote.Alimentar();
-						Tela.TelaAlimetar(mascote);
-						break;
-					case "3":
-						mascote.Brincar();
-						Tela.TelaBrincar(mascote);
-						break;
-					case "4":
-						mascote.Dormir();
-						Tela.TelaDormir(mascote);
-						break;
-					case "5":
-						continuar = false;
-						break;
-					default:
-						Console.WriteLine("Opção Invalida!\n");
-						break;
-
+				else {
+					mascote = mascotes[opcaoMascoteInteracao];
+					break; 
 				}
 			}
+
+
+
+
+
+			
+
+			continuar = true;
+				while (continuar)
+				{
+					opcaoMenuInteracao = Tela.TelaOpcaoInteracao(mascote, nomeUsuario);
+
+					if (!mascote.Saude())
+					{
+						Tela.TelaGameOver(mascote);
+						continuar = false;
+					}
+
+					switch (opcaoMenuInteracao)
+					{
+						case "1":
+							Tela.TelaInfoMascote(mascote);
+							break;
+						case "2":
+							mascote.Alimentar();
+							Tela.TelaAlimetar(mascote);
+							break;
+						case "3":
+							mascote.Brincar();
+							Tela.TelaBrincar(mascote);
+							break;
+						case "4":
+							mascote.Dormir();
+							Tela.TelaDormir(mascote);
+							break;
+						case "5":
+							continuar = false;
+							break;
+						default:
+							Console.WriteLine("Opção Invalida!\n");
+							break;
+
+					}
+				}
 			
 			
 			
